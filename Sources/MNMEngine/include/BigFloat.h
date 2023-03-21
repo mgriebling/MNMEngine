@@ -99,8 +99,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) BigFloat *duplicate;
 @property (nonatomic, readonly, copy) BigFloat *pi;
 
-- (BOOL)appendDigit: (char)digit useComplement:(int)complement;
-- (void)appendExpDigit:(char)digit;
+- (BOOL)appendDigit: (short)digit useComplement:(int)complement;
+- (void)appendExpDigit:(short)digit;
 - (void)deleteDigitUseComplement:(int)complement;
 - (void)deleteExpDigit;
 - (void)convertToRadix:(unsigned short)newRadix;

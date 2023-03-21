@@ -936,7 +936,7 @@ BF_NormaliseNumbers
 // into the calculator. 2's complement numbers have some weird stuff that needs
 // to be worked through once the digit is appended.
 //
-- (BOOL)appendDigit:(char)digit useComplement:(int)complement
+- (BOOL)appendDigit:(short)digit useComplement:(int)complement
 {
 	unsigned long		values[BF_num_values];
 	
@@ -1020,36 +1020,29 @@ BF_NormaliseNumbers
 }
 
 //
-// appendExpDigit
-//
 // Puts another digit on the exponent
 //
-- (void)appendExpDigit: (char)digit
+- (void)appendExpDigit: (short)digit
 {
 	// Change the sign when '+/-' is pressed
-	if (digit == '-')
-	{
+	if (digit == '-') {
 		bf_exponent *= -1;
 		return;
 	}
 	
 	// Do the appending stuff
-	if (digit >= 0 && digit <= 9)
-	{
+    if (digit >= 0 && digit <= 9) {
 		// Do nothing if overflow could occur
-        long expLimit = (long)pow(bf_radix, bf_exponent_precision);
-//		if ( abs(bf_exponent)
-//			bf_exponent < (-(long)pow(bf_radix, bf_exponent_precision) / bf_radix)
-//			||
-//			bf_exponent > ((long)pow(bf_radix, bf_exponent_precision) / bf_radix)
-//		)
-//		{
-//			return;
-//		}
+        int expLimit = (int)pow(bf_radix, bf_exponent_precision);
+        int value = bf_exponent * bf_radix;
         if (bf_exponent < 0) {
-            bf_exponent = (int)MAX(-expLimit, bf_exponent * bf_radix - digit);
+            value -= digit;
+            if (value < -expLimit) bf_exponent = -expLimit;
+            else bf_exponent = value;
         } else {
-            bf_exponent = (int)MIN(expLimit, bf_exponent * bf_radix + digit);
+            value += digit;
+            if (value > expLimit) bf_exponent = expLimit;
+            else bf_exponent = value;
         }
 	}
 }

@@ -66,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, getter=getUserPoint) int userPoint;
 @property (nonatomic, readonly, copy) BigFloat *duplicate;
 
-- (BOOL)appendDigit: (char)digit useComplement:(int)complement;
-- (void)appendExpDigit:(char)digit;
+- (BOOL)appendDigit: (short)digit useComplement:(int)complement;
+- (void)appendExpDigit:(short)digit;
 - (void)deleteDigitUseComplement:(int)complement;
 - (void)deleteExpDigit;
 - (void)convertToRadix:(unsigned short)newRadix;

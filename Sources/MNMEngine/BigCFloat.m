@@ -522,7 +522,7 @@
 //
 // Wrapper that adds complex number support around the base class
 //
-- (BOOL)appendDigit:(char)digit useComplement:(int)complement
+- (BOOL)appendDigit:(short)digit useComplement:(int)complement
 {
     if (digit == L'i')
     {
@@ -543,7 +543,7 @@
 //
 // Wrapper that adds complex number support around the base class
 //
-- (void)appendExpDigit:(char)digit
+- (void)appendExpDigit:(short)digit
 {
     if (bcf_has_imaginary)
     {

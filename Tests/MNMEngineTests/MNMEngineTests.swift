@@ -11,8 +11,9 @@ final class MNMEngineTests: XCTestCase {
         let two = BigCFloat(int: 2, radix: 10)
         let i = BigCFloat(real: BigFloat(), imaginary: BigFloat(int: 1, radix: 10))
         two.sqrt()
-        let x = BigFloat(string: "1e-100", radix: 10)
+        let x = BigFloat(string: "1e-1000", radix: 10)
         x.appendExpDigit(2)
+        x.appendExpDigit(Int16(Character("-").asciiValue!))
         print(pi.toString, two.toString, i.toString)
     }
 }
